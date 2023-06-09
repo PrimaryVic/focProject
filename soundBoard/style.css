@@ -1,0 +1,8 @@
+button{
+text-align: center;
+    color: black;
+}
+
+button.playing{
+background-color: brown;
+}
