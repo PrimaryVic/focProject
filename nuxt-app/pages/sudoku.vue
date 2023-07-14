@@ -5,6 +5,7 @@ let sudokuGrid = ref([]);
 let originalGrid = ref([]);
 let solution = ref([]);
 let solutionGrid = ref([]);
+let result = ref('Try your luck on this sudoku')
 
 async function getBoard() {
   try {
@@ -26,7 +27,7 @@ getBoard();
 const checkSolution = () => {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      if (solutionGrid.value[i][j] !== solution.value[i][j]) { // change sudokuGrid to solutionGrid
+      if (solutionGrid.value[i][j] !== sudokuGrid.value[i][j]) { // change sudokuGrid to solutionGrid
         return false;
       }
     }
@@ -35,13 +36,14 @@ const checkSolution = () => {
 };
 
 const check = () => {
-  if(checkSolution()) alert(true);
-  else alert(false);
+  if(checkSolution()) result.value = 'Good job you solved it!';
+  else result.value = 'Your solution is not correct, keep trying!';
 };
 
 </script>
 
 <template>
+  <h1 class="flex justify-center"> {{result}} </h1>
   <div class="flex justify-center items-center m-5 bg-gray-100">
     <div class="grid grid-cols-9 gap-0">
       <template v-for="(row, rowIndex) in solutionGrid">
